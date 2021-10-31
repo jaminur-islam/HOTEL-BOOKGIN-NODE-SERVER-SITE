@@ -22,8 +22,18 @@ const run = async () => {
     const database = client.db("Myservices");
     const serviceCollection = database.collection("services");
     const orderCollection = database.collection("order");
+    const foodCollection = database.collection('food')
 
-  
+   // Get food Api
+   app.get("/food/:category" , async(req , res)=>{
+     const category = req.params.category;
+     console.log(category)
+     const filter = {food : category}
+     const cursor =  await foodCollection.find(filter).toArray()
+     res.send(cursor)
+   })
+
+
     // Post api
     app.post("/add" , async(req , res)=>{
         const data = req.body;
