@@ -27,7 +27,6 @@ const run = async () => {
    // Get food Api
    app.get("/food/:category" , async(req , res)=>{
      const category = req.params.category;
-     console.log(category)
      const filter = {food : category}
      const cursor =  await foodCollection.find(filter).toArray()
      res.send(cursor)
